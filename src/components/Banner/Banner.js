@@ -17,6 +17,10 @@ const Banner = () => {
     fetchRandomMovie();
   }, []);
 
+  const truncate = (str, n) => {
+    return str?.length > n ? str.substr(0, n-1) + '...' : str;
+  }
+
   return (
     <header
       className='banner'
@@ -26,14 +30,15 @@ const Banner = () => {
         'backgroundPosition' : 'center center'}}
     >
       <div className='banner-content'>
-        <h1>{movie?.name || movie?.original_name || movie?.title}</h1>
+        <h1 className='banner-title'>{movie?.name || movie?.original_name || movie?.title}</h1>
+        <h1 className="movie-description">{truncate(movie?.overview, 150)}</h1>
         <div className="banner-buttons">
           <button className="banner-button">Play</button>
           <button className="banner-button">My List</button>
           <buton></buton>
         </div>
-        <h1 className="movie-description">{movie?.overview}</h1>
       </div>
+      <div className="banner-fadeBottom"/>
     </header>
   )
 }
